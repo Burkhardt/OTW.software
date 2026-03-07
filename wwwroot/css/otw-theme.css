@@ -1,0 +1,223 @@
+:root {
+    --deep-blue: #05264a;
+    --dark-blue: #0d3d66;
+    --turquoise: #13b7bf;
+    --turquoise-soft: #7de0dc;
+    --ink: #e6f3ff;
+    --ink-muted: #b9d4ea;
+    --panel-edge: rgba(125, 224, 220, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Barlow", "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: radial-gradient(1200px 700px at 10% 0%, #0c5b87 0%, transparent 52%),
+        radial-gradient(900px 500px at 90% 20%, #0a3c64 0%, transparent 58%),
+        linear-gradient(160deg, #021b35 0%, #06335b 42%, #082745 100%);
+}
+
+.page-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: linear-gradient(rgba(125, 224, 220, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 224, 220, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+
+.hero {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4.5rem 1.25rem 2rem;
+    animation: slide-in 0.8s ease-out;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin: 0 0 0.8rem;
+    padding: 0.32rem 0.7rem;
+    border-radius: 999px;
+    color: #05263f;
+    background: linear-gradient(90deg, var(--turquoise-soft), var(--turquoise));
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+}
+
+h1,
+h2 {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    letter-spacing: 0.01em;
+}
+
+h1 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+.lead {
+    margin: 1rem 0 0;
+    max-width: 65ch;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--ink-muted);
+}
+
+.content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.25rem 3.5rem;
+    display: grid;
+    gap: 1.2rem;
+}
+
+.panel {
+    position: relative;
+    border: 1px solid var(--panel-edge);
+    border-radius: 18px;
+    padding: 1.3rem;
+    background: linear-gradient(160deg, rgba(7, 36, 63, 0.9), rgba(7, 53, 87, 0.75));
+    box-shadow: 0 14px 40px rgba(2, 12, 30, 0.45);
+    backdrop-filter: blur(4px);
+}
+
+.section-copy {
+    margin: 0.55rem 0 1.2rem;
+    color: var(--ink-muted);
+}
+
+.gallery {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.photo-card {
+    margin: 0;
+}
+
+.photo-card p {
+    margin: 0.7rem 0 0;
+    color: #d5ecff;
+    font-size: 0.97rem;
+}
+
+.placeholder {
+    position: relative;
+    min-height: 210px;
+    border-radius: 14px;
+    border: 1px dashed rgba(230, 243, 255, 0.55);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.placeholder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.04),
+        rgba(255, 255, 255, 0.04) 16px,
+        rgba(0, 0, 0, 0.08) 16px,
+        rgba(0, 0, 0, 0.08) 32px
+    );
+    z-index: -1;
+}
+
+.placeholder span {
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+    background: rgba(3, 24, 44, 0.55);
+    color: #eff8ff;
+    font-weight: 600;
+}
+
+.photo-image {
+    width: 100%;
+    height: 100%;
+    min-height: 210px;
+    object-fit: cover;
+    display: block;
+}
+
+.merch-1 {
+    background: linear-gradient(135deg, rgba(19, 183, 191, 0.35), rgba(13, 61, 102, 0.75));
+}
+
+.merch-2 {
+    background: linear-gradient(135deg, rgba(16, 93, 142, 0.72), rgba(125, 224, 220, 0.35));
+}
+
+.manual-1 {
+    background: linear-gradient(135deg, rgba(9, 63, 101, 0.82), rgba(19, 183, 191, 0.28));
+}
+
+.manual-2 {
+    background: linear-gradient(135deg, rgba(125, 224, 220, 0.22), rgba(3, 33, 60, 0.88));
+}
+
+.reveal {
+    animation: rise 0.7s ease-out both;
+}
+
+.delay {
+    animation-delay: 0.12s;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 760px) {
+    .hero {
+        padding-top: 3.2rem;
+    }
+
+    .panel {
+        padding: 1rem;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .placeholder {
+        min-height: 190px;
+    }
+
+    .photo-image {
+        min-height: 190px;
+    }
+}
