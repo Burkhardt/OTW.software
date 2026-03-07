@@ -25,13 +25,13 @@ app.MapGet("/", () =>
 		<p class="eyebrow">OTW Archive</p>
 		<h1>OTW Software Collection</h1>
 		<p class="lead">
-			Showcase for legacy merchandise photos and legacy OTW 2.4 manual box photos from early 2000s.
+			Showcase for legacy merchandise and legacy OTW 2.4 manual box photos from early 2000.
 		</p>
 	</header>
 
 	<main class="content">
 		<section class="panel reveal">
-			<h2>Legacy Merchandise Photos</h2>
+			<h2>Legacy Merchandise & Product Photos</h2>
 			<div class="gallery">
 				<article class="photo-card">
 					<div class="placeholder merch-1">
