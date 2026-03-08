@@ -4,13 +4,13 @@ This folder contains implementation-oriented architecture and workflow diagrams 
 
 ## UML Diagrams
 
-PlantUML sources are stored in `docs/um/`:
+PlantUML sources are stored in `docs/UML/`:
 
-- `docs/um/photographer-delivery-state.puml`
+- `docs/UML/photographer-delivery-state.puml`
   - State machine for `PhotographerDelivery` lifecycle
-- `docs/um/review-run-state.puml`
+- `docs/UML/review-run-state.puml`
   - State machine for `ReviewRun` lifecycle with positive-selection flow
-- `docs/um/collaborative-selection-activity.puml`
+- `docs/UML/collaborative-selection-activity.puml`
   - End-to-end collaborative activity flow from ingest through selection and optional curation/pruning
 
 ## Notes
