@@ -1,0 +1,32 @@
+@startuml
+hide empty description
+
+title ReviewRun State Machine (Positive Selection)
+
+[*] --> Created
+
+Created --> Open : openRun()
+Open --> CollectingSelections : beginSelectionWindow()
+CollectingSelections --> Evaluating : closeSelectionWindow()
+Evaluating --> Completed : finalizeSelectedCandidates()
+Completed --> Superseded : startNewRunFromSameDelivery()
+
+' Optional fast-path when no review window is needed.
+Open --> Evaluating : immediateEvaluation()
+
+note right of CollectingSelections
+Reviewers add positive SelectionMarks.
+No mark != rejection.
+end note
+
+note right of Evaluating
+Selection policy can retain images with
+>= 1 positive mark (or stricter thresholds).
+end note
+
+note right of Superseded
+Superseded keeps historical traceability;
+it does not imply invalid outcomes.
+end note
+
+@enduml

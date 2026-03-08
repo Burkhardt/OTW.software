@@ -1,0 +1,32 @@
+@startuml
+hide empty description
+
+title PhotographerDelivery State Machine
+
+[*] --> Registered
+
+Registered --> Discovering : startDiscovery()
+Discovering --> Discovered : discoverySucceeded(sourceManifest)
+Discovering --> Failed : discoveryFailed(reason)
+
+Discovered --> Importing : startImport()
+Importing --> Imported : importSucceeded(importSummary)
+Importing --> Failed : importFailed(reason)
+
+Imported --> ReviewReady : createInitialReviewRun()
+ReviewReady --> Archived : archiveDelivery()
+
+Failed --> Registered : retryAfterFix()
+
+note right of Discovering
+Source is an ingest reference
+(e.g., Google Photos shared link).
+It is not the canonical runtime URL.
+end note
+
+note right of Imported
+Canonical runtime image URLs are hosted
+on the AfricaStage/OTW ImageServer.
+end note
+
+@enduml

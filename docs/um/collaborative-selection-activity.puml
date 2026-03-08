@@ -1,0 +1,73 @@
+@startuml
+title OTW/AfricaStage Collaborative Positive-Selection Workflow
+
+start
+
+:User submits PhotographerDelivery link
+(e.g., Google Photos shared album);
+
+:Server registers PhotographerDelivery;
+:Server discovers source images;
+:Server creates or refreshes source manifest;
+
+if (Discovery successful?) then (yes)
+  :Server imports/copies images to ImageServer;
+  :Server records canonical ImageAsset URLs
+  on AfricaStage/OTW ImageServer;
+else (no)
+  :Mark PhotographerDelivery as Failed;
+  stop
+endif
+
+:Server creates ReviewRun;
+:ReviewRun state -> Open / CollectingSelections;
+
+fork
+  :Reviewer A marks liked images
+  (positive checkmarks);
+  :Server persists SelectionMarks;
+fork again
+  :Reviewer B marks liked images
+  (positive checkmarks);
+  :Server persists SelectionMarks;
+fork again
+  :Reviewer N marks liked images
+  (positive checkmarks);
+  :Server persists SelectionMarks;
+end fork
+
+:Server aggregates SelectionMarks per ImageAsset;
+:Apply selection retention rule
+(e.g., retain if marks >= policy threshold);
+:Persist selected candidates;
+
+if (Selected set too large?) then (yes)
+  :Optional CurationDecision step;
+  :Consolidate/prune selected candidates;
+else (no)
+endif
+
+if (Storage-saving needed later?) then (yes)
+  :Create pruning/removal candidates
+  as explicit later process;
+else (no)
+endif
+
+if (Need another pass from same delivery?) then (yes)
+  :Start new ReviewRun from same PhotographerDelivery;
+else (no)
+endif
+
+stop
+
+note right
+Modeling constraints:
+- No positive SelectionMark is neutral, not rejection.
+- Positive selection can be sufficient for retention,
+  depending on policy.
+- Curation/pruning is explicit and later, not review-time rejection.
+- Source share links are ingest-only references.
+- Canonical runtime image URLs live on ImageServer after import.
+end note
+
+@enduml
