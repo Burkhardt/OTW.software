@@ -15,6 +15,13 @@ PlantUML sources are stored in `docs/UML/`:
 
 ## Notes
 
-- The workflow is positive-selection based (`SelectionMark`) rather than rejection-driven.
+- The currently implemented API model is filesystem-first (`Album`, `Image`) with persisted `Review` votes.
 - Source share links are ingest references only.
 - Canonical runtime image URLs are assigned after import on the AfricaStage/OTW ImageServer.
+
+## API Notes
+
+- `docs/API/filesystem-first-model-iteration20260310.md`
+  - Filesystem-first Album/Image model and JsonPit review persistence for the current OTW iteration
+- `docs/API/personpit-iteration20260318.md`
+  - PersonPit storage layout, JsonPit item model, and the person/contact API added in this iteration
